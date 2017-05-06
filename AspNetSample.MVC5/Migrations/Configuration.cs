@@ -1,19 +1,19 @@
-namespace AspNetSample.MVC5.Migrations
+namespace AspNetSample.MeetingMinutesSystem.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AspNetSample.MVC5.Models.MeetingMinutesDB>
+    internal sealed class Configuration : DbMigrationsConfiguration<AspNetSample.MeetingMinutesSystem.Models.MeetingMinutesDB>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "AspNetSample.MVC5.Models.MeetingMinutesDB";
+            ContextKey = "AspNetSample.MeetingMinutesSystem.Models.MeetingMinutesDB";
         }
 
-        protected override void Seed(AspNetSample.MVC5.Models.MeetingMinutesDB context)
+        protected override void Seed(AspNetSample.MeetingMinutesSystem.Models.MeetingMinutesDB context)
         {
             //  This method will be called after migrating to the latest version.
 

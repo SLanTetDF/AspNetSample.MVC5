@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetSample.MVC5", "AspNetSample.MVC5\AspNetSample.MVC5.csproj", "{C11E2DA1-CA1B-49A1-9FD4-8C4867CFE4A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetSample.MeetingMinutesSystem", "AspNetSample.MVC5\AspNetSample.MeetingMinutesSystem.csproj", "{C11E2DA1-CA1B-49A1-9FD4-8C4867CFE4A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

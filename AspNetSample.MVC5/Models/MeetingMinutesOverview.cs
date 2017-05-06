@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace AspNetSample.MVC5.Models
+namespace AspNetSample.MeetingMinutesSystem.Models
 {
     public class MeetingMinutesOverview
     {

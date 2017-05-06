@@ -1,4 +1,4 @@
-﻿using AspNetSample.MVC5.Models;
+﻿using AspNetSample.MeetingMinutesSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace AspNetSample.MVC5
+namespace AspNetSample.MeetingMinutesSystem
 {
     public class MvcApplication : System.Web.HttpApplication
     {

@@ -5,7 +5,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
-namespace AspNetSample.MVC5.Models
+namespace AspNetSample.MeetingMinutesSystem.Models
 {
     public class MeetingMinutesDB : DbContext
     {
@@ -19,7 +19,7 @@ namespace AspNetSample.MVC5.Models
         public MeetingMinutesDB() : base("name=MeetingMinutesDB")
         {
         }
-        public System.Data.Entity.DbSet<AspNetSample.MVC5.Models.MeetingMinutesOverview> MeetingMinutesOverviews { get; set; }
+        public System.Data.Entity.DbSet<AspNetSample.MeetingMinutesSystem.Models.MeetingMinutesOverview> MeetingMinutesOverviews { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

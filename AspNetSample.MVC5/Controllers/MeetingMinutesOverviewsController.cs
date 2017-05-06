@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using AspNetSample.MVC5.Models;
+using AspNetSample.MeetingMinutesSystem.Models;
 
-namespace AspNetSample.MVC5.Controllers
+namespace AspNetSample.MeetingMinutesSystem.Controllers
 {
     public class MeetingMinutesOverviewsController : Controller
     {

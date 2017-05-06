@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace AspNetSample.MVC5
+namespace AspNetSample.MeetingMinutesSystem
 {
     public class FilterConfig
     {
