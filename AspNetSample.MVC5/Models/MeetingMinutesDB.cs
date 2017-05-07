@@ -16,11 +16,13 @@ namespace AspNetSample.MeetingMinutesSystem.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
+            //RYAN: the connection string had better declare as a const string.
         public MeetingMinutesDB() : base("name=MeetingMinutesDB")
         {
         }
         public System.Data.Entity.DbSet<AspNetSample.MeetingMinutesSystem.Models.MeetingMinutesOverview> MeetingMinutesOverviews { get; set; }
 
+        //RYAN: please explain the purpose of this override function.
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

@@ -5,6 +5,7 @@ using System.Web;
 
 namespace AspNetSample.MeetingMinutesSystem.Models
 { 
+    //RYAN: please explain the purpose (or functionality) of this class
     public class MeetingToolInitlizer: System.Data.Entity.DropCreateDatabaseAlways<MeetingMinutesDB>
     {
             protected override void Seed(MeetingMinutesDB context)
@@ -18,5 +19,5 @@ namespace AspNetSample.MeetingMinutesSystem.Models
             context.SaveChanges();
             base.Seed(context);
         }
-        }
+        }//RYAN: watch out the code format, this is not minor things sometime. People will regard this as not being professional.
 }

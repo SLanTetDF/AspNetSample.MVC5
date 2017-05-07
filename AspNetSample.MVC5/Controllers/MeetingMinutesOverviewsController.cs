@@ -15,9 +15,13 @@ namespace AspNetSample.MeetingMinutesSystem.Controllers
         private MeetingMinutesDB db = new MeetingMinutesDB();
 
         // GET: MeetingMinutesOverviews
+        //RYAN: Find out the duplicate code in this method and fix it.
+        //You should be sensitive enough to the duplicate code.
+        //Refactor this method, it can be more clear than now.
         public ActionResult Index(string key)
         {
             ViewResult view;
+            //RYAN: use string.IsNullOrEmpty
             if (key == string.Empty || key == null)
             {
                 var data = db.MeetingMinutesOverviews.ToList();
@@ -35,6 +39,7 @@ namespace AspNetSample.MeetingMinutesSystem.Controllers
 
                 var minutes = from s in db.MeetingMinutesOverviews
                               select s;
+                //RYAN: did this check make any sense? please explain. I think you already checked the string null\empty above.
                 if (!String.IsNullOrEmpty(key))
                 {
                     minutes = minutes.Where(s => s.IssueDate.ToString().Contains(key)
@@ -43,7 +48,7 @@ namespace AspNetSample.MeetingMinutesSystem.Controllers
                 }
                 foreach (var item in minutes)
                 {
-                    SetStatusColor(item);
+                    SetStatusColor(item);//RYAN: why empty line below? please be sensitive to the clean code.....
 
                 }
 
@@ -75,6 +80,7 @@ namespace AspNetSample.MeetingMinutesSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //RYAN: can you rename below variable to better explain its purpose?
             MeetingMinutesOverview meetingMinutesOverview = db.MeetingMinutesOverviews.Find(id);
             if (meetingMinutesOverview == null)
             {
@@ -159,7 +165,8 @@ namespace AspNetSample.MeetingMinutesSystem.Controllers
         }
 
         protected override void Dispose(bool disposing)
-        {         
+        {       
+            //RYAN: can you explain when will disposing is true and when disposing is false?
             if (disposing)
             {
                 db.Dispose();

@@ -12,7 +12,7 @@
 
 @using (Html.BeginForm("Index", "MeetingMinutesOverviews", FormMethod.Get))
 {
-    <p>
+    <p><!--This is not 'Find by name', think about how you implement the search, and then rephrase here-->
         Find by name: @Html.TextBox("Key", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
