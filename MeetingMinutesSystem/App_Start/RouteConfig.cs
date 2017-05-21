@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace AspNetSample.MeetingMinutesSystem
+namespace MeetingMinutesSystem
 {
     public class RouteConfig
     {

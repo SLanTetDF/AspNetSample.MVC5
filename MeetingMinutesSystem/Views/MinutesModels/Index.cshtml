@@ -1,0 +1,88 @@
+﻿@model IEnumerable<MeetingMinutesSystem.Models.MinutesModel>
+
+<head>
+    <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        ("#addItem").click(function () {
+            $.ajax({
+                url: this.href,
+                cache: false,
+                success: function (html) { $("#main").append(html); }
+            });
+            return false;
+        });
+
+
+    </script>
+
+
+</head>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>MainPage</h2>
+
+@Html.ActionLink("AddMinutes", "AddRow", null, new { id = "addItem" })
+
+<table class="main">
+    @using (Html.BeginForm("Filter", "MinutesModels", FormMethod.Get))
+    {
+        <p>
+            <text>Issue Date</text>@Html.DropDownList("issueDate", new SelectList(ViewBag.IssueDate))
+            <text>Status</text>@Html.DropDownList("status", new SelectList(ViewBag.Status))
+            <text>ResponsibleMember</text>@Html.DropDownList("responsibleMember", new SelectList(ViewBag.ResponsibleMember))
+            <input type="submit" value="Search" />
+        </p>
+    }
+    <tr>
+        <td></td>
+        <td>Issue Date</td>
+        <td>Content</td>
+        <td>Responsible Member</td>
+        <td>Deadline</td>
+        <td>Status</td>
+    </tr>
+    @using (Html.BeginForm("Save", "MinutesModels", FormMethod.Post))
+    {
+        for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+
+                <td>
+                    @Html.HiddenFor(m => m.ToList()[i].Id)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ToList()[i].IssueDate, "{0:yyyy/MM/dd}", new { maxlength = 10 })
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ToList()[i].Content)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ToList()[i].ResponsibleMember)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.ToList()[i].Deadline, "{0:yyyy/MM/dd}", new { maxlength = 10 })
+                </td>
+                <td>
+                    @Html.EnumDropDownListFor(m => m.ToArray()[i].Status, htmlAttributes: new { @class = "form-control" })
+                </td>
+
+                <td>
+                    @using (Html.BeginForm("Delete", "MinutesModels", FormMethod.Post, new { id = Model.ToList()[i].Id.ToString() }))
+                    {
+                        <input type="submit" id="btnDelete" name="Command" onclick="return confirm('Do you want to delete?');" value="Delete" />
+                    }                 
+                </td>
+
+
+            </tr>
+        }
+        <tr>
+            <td>
+                <input type="submit" id="btnSave" onclick="GetIds(this);" name="Command" value="Save" />
+            </td>
+        </tr>
+    }
+</table>

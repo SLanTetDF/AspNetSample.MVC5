@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息是通过以下项进行控制的
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("AspNetSample.MeetingMinutesSystem")]
+[assembly: AssemblyTitle("MeetingMinutesSystem")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AspNetSample.MeetingMinutesSystem")]
+[assembly: AssemblyProduct("MeetingMinutesSystem")]
 [assembly: AssemblyCopyright("版权所有(C)  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于 typelib 的 ID
-[assembly: Guid("a73bc3a1-bd11-4cfd-b815-bd7dbab77a4c")]
+[assembly: Guid("d0af72ce-c253-4ae3-a4ad-0b747d57ea5c")]
 
 // 程序集的版本信息由下列四个值组成:
 //

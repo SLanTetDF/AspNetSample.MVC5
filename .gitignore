@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /MeetingMinutesTool.Test
 /MeetingMinutesTool
+/MeetingMinutesSystem.uTest
