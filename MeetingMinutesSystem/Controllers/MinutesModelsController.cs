@@ -78,7 +78,7 @@ namespace MeetingMinutesSystem.Controllers
         /// </summary>
         private void UpdateFilter()
         {
-            ViewBag.IssueDate = (from minute in db.MeetingMinutesData select minute.IssueDate.ToShortDateString()).ToList();
+            ViewBag.IssueDate = (from minute in db.MeetingMinutesData select minute.IssueDate).ToList();
             ViewBag.Status = (from minute in db.MeetingMinutesData select minute.Status).ToList();
             ViewBag.ResponsibleMember = (from minute in db.MeetingMinutesData select minute.ResponsibleMember).ToList();
         }
@@ -91,7 +91,7 @@ namespace MeetingMinutesSystem.Controllers
         /// <returns></returns>
         [HttpPost]
         public ActionResult Save(string command, IEnumerable<MinutesModel> model)
-        { 
+        {
             UpdateFilter();
             if (model != null)
             {
@@ -114,13 +114,15 @@ namespace MeetingMinutesSystem.Controllers
         /// <summary>
         /// Delete the minute by minute id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="modelId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Delete(string id)
+        public ActionResult Delete()
         {
             UpdateFilter();
-            var data = db.MeetingMinutesData.Find(id);
+
+            string idDelete = Request["deleteId"];
+            var data = db.MeetingMinutesData.Find(new Guid(idDelete));
             if (data != null)
             {
                 db.MeetingMinutesData.Remove(data);

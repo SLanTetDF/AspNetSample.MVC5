@@ -49,9 +49,9 @@
         for (int i = 0; i < Model.Count(); i++)
         {
             <tr>
-
                 <td>
-                    @Html.HiddenFor(m => m.ToList()[i].Id)
+                    @Html.HiddenFor(m => m.ToList()[i].Id)     
+                    @*<input type="hidden" name="deleteId" value="@Model.ToList()[i].Id">*@
                 </td>
                 <td>
                     @Html.TextBoxFor(m => m.ToList()[i].IssueDate, "{0:yyyy/MM/dd}", new { maxlength = 10 })
@@ -70,18 +70,16 @@
                 </td>
 
                 <td>
-                    @using (Html.BeginForm("Delete", "MinutesModels", FormMethod.Post, new { id = Model.ToList()[i].Id.ToString() }))
-                    {
+                    @using (Html.BeginForm("Delete", "MinutesModels", FormMethod.Post))
+                    {                       
                         <input type="submit" id="btnDelete" name="Command" onclick="return confirm('Do you want to delete?');" value="Delete" />
-                    }                 
+                    }
                 </td>
-
-
             </tr>
         }
         <tr>
             <td>
-                <input type="submit" id="btnSave" onclick="GetIds(this);" name="Command" value="Save" />
+                <input type="submit" id="btnSave" name="Command" value="Save" />
             </td>
         </tr>
     }
