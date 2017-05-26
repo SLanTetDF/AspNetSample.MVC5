@@ -11,8 +11,6 @@
             });
             return false;
         });
-
-
     </script>
 
 
@@ -48,10 +46,10 @@
     {
         for (int i = 0; i < Model.Count(); i++)
         {
+
             <tr>
                 <td>
-                    @Html.HiddenFor(m => m.ToList()[i].Id)     
-                    @*<input type="hidden" name="deleteId" value="@Model.ToList()[i].Id">*@
+                    @Html.HiddenFor(m => m.ToList()[i].Id)
                 </td>
                 <td>
                     @Html.TextBoxFor(m => m.ToList()[i].IssueDate, "{0:yyyy/MM/dd}", new { maxlength = 10 })
@@ -67,17 +65,14 @@
                 </td>
                 <td>
                     @Html.EnumDropDownListFor(m => m.ToArray()[i].Status, htmlAttributes: new { @class = "form-control" })
-                </td>
-
+                </td> 
                 <td>
-                    @using (Html.BeginForm("Delete", "MinutesModels", FormMethod.Post))
-                    {                       
-                        <input type="submit" id="btnDelete" name="Command" onclick="return confirm('Do you want to delete?');" value="Delete" />
-                    }
+                    <button type="submit" name="Command" value="@Model.ToList()[i].Id" onclick="return confirm('Do you want to delete?');">Delete</button>
                 </td>
             </tr>
         }
         <tr>
+            <td></td>
             <td>
                 <input type="submit" id="btnSave" name="Command" value="Save" />
             </td>

@@ -83,16 +83,11 @@ namespace MeetingMinutesSystem.Controllers
             ViewBag.ResponsibleMember = (from minute in db.MeetingMinutesData select minute.ResponsibleMember).ToList();
         }
 
-        /// <summary>
-        /// Save minutes
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="model"></param>
-        /// <returns></returns>
         [HttpPost]
         public ActionResult Save(string command, IEnumerable<MinutesModel> model)
         {
             UpdateFilter();
+
             if (model != null)
             {
                 if (command == "Save")
@@ -104,6 +99,16 @@ namespace MeetingMinutesSystem.Controllers
                             db.Entry(minute).State = EntityState.Modified;
                             db.SaveChanges();
                         }
+                    }
+
+                }
+                else
+                {
+                    var data = db.MeetingMinutesData.Find(new Guid(command));
+                    if (data != null)
+                    {
+                        db.MeetingMinutesData.Remove(data);
+                        db.SaveChanges();
                     }
 
                 }
