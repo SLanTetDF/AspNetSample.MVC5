@@ -70,6 +70,7 @@ namespace MeetingMinutesSystem.Controllers
 
             db.MeetingMinutesData.Add(newMeetingMinute);
             db.SaveChanges();
+
             return View("Index", GetMeetingMinutes());
         }
 
@@ -83,6 +84,12 @@ namespace MeetingMinutesSystem.Controllers
             ViewBag.ResponsibleMember = (from minute in db.MeetingMinutesData select minute.ResponsibleMember).ToList();
         }
 
+        /// <summary>
+        /// Save minutes of view to database
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Save(string command, IEnumerable<MinutesModel> model)
         {
@@ -113,27 +120,6 @@ namespace MeetingMinutesSystem.Controllers
 
                 }
             }
-            return View("Index", GetMeetingMinutes());
-        }
-
-        /// <summary>
-        /// Delete the minute by minute id
-        /// </summary>
-        /// <param name="modelId"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult Delete()
-        {
-            UpdateFilter();
-
-            string idDelete = Request["deleteId"];
-            var data = db.MeetingMinutesData.Find(new Guid(idDelete));
-            if (data != null)
-            {
-                db.MeetingMinutesData.Remove(data);
-                db.SaveChanges();
-            }
-
             return View("Index", GetMeetingMinutes());
         }
 
