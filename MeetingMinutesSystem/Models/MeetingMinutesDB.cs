@@ -15,9 +15,10 @@ namespace MeetingMinutesSystem.Models
         // automatically whenever you change your model schema, please use data migrations.
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
+        private const string myConnectString = "name=MeetingMinutesSystemDataBase";
     
             //RYAN: the connection string had better declare as a const string.
-        public MeetingMinutesDB() : base("name=MeetingMinutesSystemDataBase")
+        public MeetingMinutesDB() : base(myConnectString)
         {
             
         }

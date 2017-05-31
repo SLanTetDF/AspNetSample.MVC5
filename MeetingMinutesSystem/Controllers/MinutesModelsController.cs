@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MeetingMinutesSystem.Models;
+using System.Web.Security;
 
 namespace MeetingMinutesSystem.Controllers
 {
@@ -23,8 +24,18 @@ namespace MeetingMinutesSystem.Controllers
             var data = GetMeetingMinutes();
 
             UpdateFilter();
+            GetCurrentLogin();
 
             return View(data);
+        }
+
+        /// <summary>
+        /// Get name of current login user
+        /// </summary>
+        public void GetCurrentLogin()
+        {
+            var username = (string)Session["UserName"];
+            ViewBag.UserName = username;
         }
 
         /// <summary>
@@ -54,23 +65,26 @@ namespace MeetingMinutesSystem.Controllers
         /// Create a new meeting minute 
         /// </summary>
         /// <returns></returns>
+        [AuthenicationFilter]
         public ViewResult AddRow()
         {
-            var newMeetingMinute = new MinutesModel()
+            if (Convert.ToBoolean(Session["IsAdmin"]))
             {
-                Id = Guid.NewGuid(),
-                Content = string.Empty,
-                IssueDate = DateTime.Now,
-                ResponsibleMember = string.Empty,
-                Deadline = DateTime.Now,
-                Status = Status.New
-            };
+                var newMeetingMinute = new MinutesModel()
+                {
+                    Id = Guid.NewGuid(),
+                    Content = string.Empty,
+                    IssueDate = DateTime.Now,
+                    ResponsibleMember = string.Empty,
+                    Deadline = DateTime.Now,
+                    Status = Status.New
+                };
 
-            UpdateFilter();
+                UpdateFilter();
 
-            db.MeetingMinutesData.Add(newMeetingMinute);
-            db.SaveChanges();
-
+                db.MeetingMinutesData.Add(newMeetingMinute);
+                db.SaveChanges();
+            }
             return View("Index", GetMeetingMinutes());
         }
 
@@ -90,6 +104,7 @@ namespace MeetingMinutesSystem.Controllers
         /// <param name="command"></param>
         /// <param name="model"></param>
         /// <returns></returns>
+        [AuthenicationFilter]
         [HttpPost]
         public ActionResult Save(string command, IEnumerable<MinutesModel> model)
         {

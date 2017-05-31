@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<MeetingMinutesSystem.Models.MinutesModel>
 
+
 <head>
     <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
@@ -13,6 +14,10 @@
         });
     </script>
 
+    @using (Html.BeginForm("GetCurrentLogin", "MinutesModels", FormMethod.Get))
+    {
+        <p style="text-align:right"> Hello, @ViewBag.UserName <a href="../Authentication/Logout">Logout</a></p>
+    }
 
 </head>
 
@@ -20,21 +25,23 @@
     ViewBag.Title = "Index";
 }
 
+
 <h2>MainPage</h2>
-
-@Html.ActionLink("AddMinutes", "AddRow", null, new { id = "addItem" })
-
-<table class="main">
+@if (Convert.ToBoolean(Session["IsAdmin"]))
+{
+    @Html.ActionLink("AddMinutes", "AddRow", null, new { id = "addItem" })
+}
+<table class="main">  
     @using (Html.BeginForm("Filter", "MinutesModels", FormMethod.Get))
     {
-        <p>
+        <p style="border-color:brown">
             <text>Issue Date</text>@Html.DropDownList("issueDate", new SelectList(ViewBag.IssueDate))
             <text>Status</text>@Html.DropDownList("status", new SelectList(ViewBag.Status))
             <text>ResponsibleMember</text>@Html.DropDownList("responsibleMember", new SelectList(ViewBag.ResponsibleMember))
             <input type="submit" value="Search" />
         </p>
     }
-    <tr>
+    <tr style="color:coral">
         <td></td>
         <td>Issue Date</td>
         <td>Content</td>
@@ -65,17 +72,23 @@
                 </td>
                 <td>
                     @Html.EnumDropDownListFor(m => m.ToArray()[i].Status, htmlAttributes: new { @class = "form-control" })
-                </td> 
-                <td>
-                    <button type="submit" name="Command" value="@Model.ToList()[i].Id" onclick="return confirm('Do you want to delete?');">Delete</button>
                 </td>
+                @if (Convert.ToBoolean(Session["IsAdmin"]))
+                    {
+                    <td>
+                        <button type="submit" name="Command" value="@Model.ToList()[i].Id" onclick="return confirm('Do you want to delete?');">Delete</button>
+                    </td>
+                }
             </tr>
         }
         <tr>
             <td></td>
-            <td>
-                <input type="submit" id="btnSave" name="Command" value="Save" />
-            </td>
+            @if (Convert.ToBoolean(Session["IsAdmin"]))
+                {
+                <td>
+                    <input type="submit" id="btnSave" name="Command" value="Save" />
+                </td>
+            }
         </tr>
     }
 </table>

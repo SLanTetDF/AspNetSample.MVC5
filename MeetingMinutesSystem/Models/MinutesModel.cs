@@ -14,9 +14,13 @@ namespace MeetingMinutesSystem.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [HiddenInput(DisplayValue = false)]
         public Guid Id { get; set; }
+        [Required(AllowEmptyStrings = true)]
+        [StringLength(200, MinimumLength = 0, ErrorMessage = "Content cannot be longer than 200 characters")]
         public string Content { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime IssueDate { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Responsible Member string cannot be empty")]
+        [StringLength(20,MinimumLength = 1, ErrorMessage = "Responsible Member string cannot be longer than 20 characters")]
         public string ResponsibleMember { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime Deadline { get; set; }

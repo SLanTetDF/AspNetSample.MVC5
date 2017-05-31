@@ -1,0 +1,32 @@
+﻿@model MeetingMinutesSystem.Models.Account
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body>
+    <div>
+        @Html.ValidationMessage("CredentialError", new { style = "color:red;" })
+        @using (Html.BeginForm("DoLogin", "Authentication", FormMethod.Post))
+        {
+            @Html.LabelFor(c => c.UserName)
+
+            @Html.TextBoxFor(x => x.UserName)
+            <br />
+
+            @Html.LabelFor(c => c.Password)
+
+            @Html.PasswordFor(x => x.Password)
+            <br />
+
+                <input type="submit" name="BtnSubmit" value="Login" />
+        }
+
+    </div>
+
+</body>
